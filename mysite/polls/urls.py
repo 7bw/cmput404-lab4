@@ -1,0 +1,14 @@
+from django.urls import path
+from . import views
+
+#this file only gets consulted by Django if the URL starts with
+# http://127.0.0.1:8000/polls/
+# it defines what django should do for anything after that
+
+app_name = 'polls'
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
